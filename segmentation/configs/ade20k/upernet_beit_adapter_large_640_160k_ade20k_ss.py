@@ -1,7 +1,10 @@
+# lower image size and interval-40 if it is taking too long to run
+
 # Copyright (c) Shanghai AI Lab. All rights reserved.
 _base_ = [
     '../_base_/models/upernet_beit.py',
-    '../_base_/datasets/ade20k.py',
+    # '../_base_/datasets/ade20k.py',
+    '../_base_/datasets/blades.py',
     '../_base_/default_runtime.py',
     '../_base_/schedules/schedule_160k.py'
 ]

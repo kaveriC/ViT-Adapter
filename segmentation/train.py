@@ -99,8 +99,9 @@ def parse_args():
 
 def main():
     args = parse_args()
-
     cfg = Config.fromfile(args.config)
+    print("***CONFIG", cfg)
+    print("***CONFIG type", type(cfg))
     if args.cfg_options is not None:
         cfg.merge_from_dict(args.cfg_options)
     # set cudnn_benchmark
@@ -183,7 +184,10 @@ def main():
         model = revert_sync_batchnorm(model)
 
     logger.info(model)
-
+    # comment line 187-191 and use Blade Dataset, need training and test dataset. 
+    # consider cross-fold validation later, for now 80:20. 
+    # do a stratified validation to get representative- location is in the name 
+    # of annotated image instantiate the dataset here 
     datasets = [build_dataset(cfg.data.train)]
     if len(cfg.workflow) == 2:
         val_dataset = copy.deepcopy(cfg.data.val)
